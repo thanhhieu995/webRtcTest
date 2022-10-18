@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vn.videocall.webrtctest.SignupActivity">
+    tools:context="vn.hieunguyen1.appvideo.SignupActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

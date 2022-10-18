@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.webrtctest'
+    namespace 'vn.hieunguyen1.appvideo'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.webrtctest"
+        applicationId "vn.hieunguyen1.appvideo"
         minSdk 21
         targetSdk 32
         versionCode 1

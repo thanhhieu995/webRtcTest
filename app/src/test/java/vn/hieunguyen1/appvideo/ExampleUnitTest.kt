@@ -1,4 +1,4 @@
-package vn.videocall.webrtctest
+package vn.hieunguyen1.appvideo
 
 import org.junit.Test
 

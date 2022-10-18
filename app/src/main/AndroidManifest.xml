@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="vn.hieunguyen1.appvideo">
 
     <application
         android:allowBackup="true"
@@ -13,14 +14,14 @@
         android:theme="@style/Theme.WebrtcTest"
         tools:targetApi="31">
         <activity
-            android:name=".SignupActivity"
+            android:name="vn.hieunguyen1.appvideo.SignupActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="vn.hieunguyen1.appvideo.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

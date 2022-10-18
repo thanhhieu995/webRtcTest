@@ -1,8 +1,7 @@
-package vn.videocall.webrtctest
+package vn.hieunguyen1.appvideo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.webrtctest.R
 
 class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

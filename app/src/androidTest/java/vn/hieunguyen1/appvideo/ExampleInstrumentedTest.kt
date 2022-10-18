@@ -1,4 +1,4 @@
-package vn.videocall.webrtctest
+package vn.hieunguyen1.appvideo
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
