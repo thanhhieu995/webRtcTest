@@ -1,17 +1,12 @@
 package vn.hieunguyen1.appvideo
 
-import android.os.Build
 import android.os.Bundle
-import android.text.InputFilter
-import android.text.Spanned
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import java.util.Scanner
 
 
 class SignupActivity : AppCompatActivity() {
@@ -34,14 +29,64 @@ class SignupActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         signUp()
+//        countCharacter()
     }
 
     private fun checkEmpty(): Boolean {
         return !(edtName.text.isNullOrEmpty() || edtEmail.text.isNullOrEmpty() || edtPassword.text.isNullOrEmpty())
     }
 
-    fun checkString() : Boolean {
-        return edtName.text.contains("[a-zA-Z]+") && edtName.text.length > 2 && !edtName.text.contains("[!@#$%^&*()_+=<>,.?/|]")
+    fun checkString(): Boolean {
+        return edtName.text.contains("[a-zA-Z]+")
+    }
+
+    private val blockCharacter: String = "!@#$%^&*()_=+?/:;{}1234567890"
+
+    fun countCharacterAndCreateAccount() {
+        var hasMore: Boolean = false
+        for (i in edtName.text) {
+            if (blockCharacter.contains(i)) {
+                Toast.makeText(
+                    this@SignupActivity,
+                    "Your name is not valid, your name don't contain number and specific character",
+                    Toast.LENGTH_LONG
+                ).show()
+                hasMore = true
+                break
+            }
+        }
+
+        if (!hasMore) {
+            mAuth.createUserWithEmailAndPassword(
+                edtEmail.text.toString(),
+                edtPassword.text.toString()
+            ).addOnCompleteListener {
+                it
+                if (it.isSuccessful) {
+
+                    Toast.makeText(
+                        this@SignupActivity,
+                        "Sign up success",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        this@SignupActivity,
+                        "Sign up fail",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }
+            }
+        }
+    }
+
+    fun checkLength(): Boolean {
+        return edtName.text.length > 2
+    }
+
+    fun checkSpecificCharacter(): Boolean {
+        return !edtName.text.contains("[!@#$%^&*()_+=<>,.?/|]")
     }
 
 
@@ -49,30 +94,27 @@ class SignupActivity : AppCompatActivity() {
         btnSigUp.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 if (checkEmpty()) {
-                    if (checkString()) {
-                        mAuth.createUserWithEmailAndPassword(
-                            edtEmail.text.toString(),
-                            edtPassword.text.toString()
-                        ).addOnCompleteListener {
-                            it
-                            if (it.isSuccessful) {
-
-                                Toast.makeText(
-                                    this@SignupActivity,
-                                    "Sign up success",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            } else {
-                                Toast.makeText(
-                                    this@SignupActivity,
-                                    "Sign up fail",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-                        }
-                    } else {
-                        Toast.makeText(this@SignupActivity, "Please don't enter number and more than two alphabet", Toast.LENGTH_LONG).show()
-                    }
+                    countCharacterAndCreateAccount()
+//                    mAuth.createUserWithEmailAndPassword(
+//                        edtEmail.text.toString(),
+//                        edtPassword.text.toString()
+//                    ).addOnCompleteListener {
+//                        it
+//                        if (it.isSuccessful) {
+//
+//                            Toast.makeText(
+//                                this@SignupActivity,
+//                                "Sign up success",
+//                                Toast.LENGTH_LONG
+//                            ).show()
+//                        } else {
+//                            Toast.makeText(
+//                                this@SignupActivity,
+//                                "Sign up fail",
+//                                Toast.LENGTH_LONG
+//                            ).show()
+//                        }
+//                    }
                 } else {
                     Toast.makeText(
                         this@SignupActivity,
@@ -81,7 +123,6 @@ class SignupActivity : AppCompatActivity() {
                     ).show()
                 }
             }
-
         })
     }
 }
