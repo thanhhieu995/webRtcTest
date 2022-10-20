@@ -1,6 +1,8 @@
 package vn.hieunguyen1.appvideo
 
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -57,28 +59,44 @@ class SignupActivity : AppCompatActivity() {
         }
 
         if (!hasMore) {
-            mAuth.createUserWithEmailAndPassword(
-                edtEmail.text.toString(),
-                edtPassword.text.toString()
-            ).addOnCompleteListener {
-                it
-                if (it.isSuccessful) {
-
-                    Toast.makeText(
-                        this@SignupActivity,
-                        "Sign up success",
-                        Toast.LENGTH_LONG
-                    ).show()
-                } else {
-                    Toast.makeText(
-                        this@SignupActivity,
-                        "Sign up fail",
-                        Toast.LENGTH_LONG
-                    ).show()
-
+            if (isValidEmail(edtEmail.text.toString())) {
+                mAuth.createUserWithEmailAndPassword(
+                    edtEmail.text.toString(),
+                    edtPassword.text.toString()
+                ).addOnCompleteListener { it
+                    if (it.isSuccessful) {
+                        Toast.makeText(
+                            this@SignupActivity,
+                            "Sign up success",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            this@SignupActivity,
+                            "Sign up fail " + it.exception.toString(),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
+            } else {
+                Toast.makeText(this@SignupActivity, "Your email is not valid, please try again", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    fun findCharacterEmail() {
+        val hasMore: Boolean = false
+        for (i in edtEmail.text) {
+            if (i.toString() == "@") {
+                break
+            } else {
+
+            }
+        }
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     fun checkLength(): Boolean {
