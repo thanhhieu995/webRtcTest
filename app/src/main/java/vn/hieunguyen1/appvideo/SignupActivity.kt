@@ -1,7 +1,10 @@
 package vn.hieunguyen1.appvideo
 
 import android.os.Bundle
+import android.text.InputType
 import android.text.TextUtils
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Patterns
 import android.view.View
 import android.view.View.OnClickListener
@@ -21,7 +24,8 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var btnSigUp: Button
     lateinit var imgEyePass: ImageView
 
-    lateinit var mAuth: FirebaseAuth
+    private lateinit var mAuth: FirebaseAuth
+    var isPress: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,7 @@ class SignupActivity : AppCompatActivity() {
 
         signUp()
 //        countCharacter()
+        click()
     }
 
     private fun checkEmpty(): Boolean {
@@ -208,5 +213,23 @@ class SignupActivity : AppCompatActivity() {
 //            }
 //        }
 //    }
-    
+
+    fun click() {
+     imgEyePass.setOnClickListener(object : OnClickListener {
+         override fun onClick(p0: View?) {
+             if (isPress) {
+                 imgEyePass.setImageResource(R.drawable.ic_baseline_visibility_24)
+                 if (!edtPassword.text.isNullOrEmpty()) {
+                     edtPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                 }
+             } else {
+                 imgEyePass.setImageResource(R.drawable.ic_baseline_visibility_off_24)
+                 if (!edtPassword.text.isNullOrEmpty()) {
+                     edtPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                 }
+             }
+             isPress = !isPress
+            }
+        })
+    }
 }
