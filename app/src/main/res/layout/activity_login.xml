@@ -43,19 +43,6 @@
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/edt_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/edt_square_transparency_style"
-                android:hint="Enter your name"
-                android:drawableLeft="@drawable/ic_baseline_person_24"
-                android:drawablePadding="10dp"
-                android:minHeight="48dp"
-                android:padding="10dp"
-                android:textSize="20sp" />
-
 
             <EditText
                 android:id="@+id/edt_email"
