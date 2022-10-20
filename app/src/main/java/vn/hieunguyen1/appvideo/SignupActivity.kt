@@ -59,7 +59,7 @@ class SignupActivity : AppCompatActivity() {
         }
 
         if (!hasMore) {
-            if (isValidEmail(edtEmail.text.toString())) {
+            if (isValidEmail(edtEmail.text.toString()) && findCharacterEmail() && !checkUpperCaseEmail()) {
                 mAuth.createUserWithEmailAndPassword(
                     edtEmail.text.toString(),
                     edtPassword.text.toString()
@@ -81,17 +81,56 @@ class SignupActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this@SignupActivity, "Your email is not valid, please try again", Toast.LENGTH_LONG).show()
             }
+        } else {
+//            Toast.makeText(this@SignupActivity, "nhap so roi", Toast.LENGTH_LONG).show()
         }
     }
 
-    fun findCharacterEmail() {
-        val hasMore: Boolean = false
+    fun findCharacterEmail(): Boolean {
+        val alphabet: String = "qwertyuiopasdfghjklzxcvbnm"
         for (i in edtEmail.text) {
+            if (blockCharacter.contains(Char(edtEmail.text[0].toInt()))) {
+                return false
+            }
             if (i.toString() == "@") {
                 break
             } else {
-
+                if (alphabet.contains(i)) {
+                    return true
+                }
             }
+        }
+        return false
+    }
+
+    fun checkUpperCaseEmail(): Boolean {
+        val upperCase: String = "QWERTYUIOPASDFGHJKLZXCVBNM"
+        for (i in edtEmail.text) {
+            if (upperCase.contains(i)) {
+                return true
+            }
+        }
+        return false
+    }
+
+
+
+    fun findNumberOnEmail() : Boolean {
+        var number: Int = 0
+        for (i in edtEmail.text) {
+
+        }
+        return false
+    }
+
+    fun isAplhabetical(input: Any): Boolean {
+        when (input) {
+            // if the input is a String, check all the Chars of it
+            is String -> return input.all { it.isLetter() }
+            // if input is a Char, just check that single Char
+            is Char -> return input.isLetter()
+            // otherwise, input doesn't contain any Char
+            else -> return false
         }
     }
 
