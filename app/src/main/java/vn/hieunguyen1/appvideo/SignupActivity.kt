@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
 import android.view.View
+import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -17,6 +19,8 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var edtEmail: EditText
     private lateinit var edtPassword: EditText
     private lateinit var btnSigUp: Button
+    lateinit var imgEyePass: ImageView
+
     lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +31,7 @@ class SignupActivity : AppCompatActivity() {
         edtEmail = findViewById(R.id.su_edtEmail)
         edtPassword = findViewById(R.id.su_edtPassword)
         btnSigUp = findViewById(R.id.su_btnSignup)
+        imgEyePass = findViewById(R.id.su_eye_password)
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -183,4 +188,25 @@ class SignupActivity : AppCompatActivity() {
             }
         })
     }
+
+//    public void ShowHidePass(View view){
+//
+//        if(view.getId()==R.id.show_pass_btn){
+//
+//            if(edit_password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+//                ((ImageView(view)).setImageResource(R.drawable.hide_password);
+//
+//                //Show Password
+//                edit_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+//            }
+//            else{
+//                ((ImageView)(view)).setImageResource(R.drawable.show_password);
+//
+//                //Hide Password
+//                edit_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+//
+//            }
+//        }
+//    }
+    
 }

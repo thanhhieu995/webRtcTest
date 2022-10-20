@@ -21,10 +21,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        txtEmail = findViewById(R.id.edt_email)
-        txtPassword = findViewById(R.id.edt_password)
-        btnLogin = findViewById(R.id.btn_login)
-        btnSignup = findViewById(R.id.btn_signup)
+        txtEmail = findViewById(R.id.lg_edt_email)
+        txtPassword = findViewById(R.id.lg_edt_password)
+        btnLogin = findViewById(R.id.lg_btn_login)
+        btnSignup = findViewById(R.id.lg_btn_signup)
 
 //        btnSignup.setOnClickListener { OnClickListener {
 //            val intent = Intent(this@LoginActivity, SignupActivity::class.java)
