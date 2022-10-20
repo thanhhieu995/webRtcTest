@@ -70,18 +70,38 @@
                 android:drawablePadding="10dp"
                 android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/su_edtPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_password"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/edt_square_transparency_style"
-                android:hint="Enter your password..."
-                android:drawableLeft="@drawable/ic_baseline_lock_24"
-                android:drawablePadding="10dp"
-                android:minHeight="48dp"
-                android:padding="10dp"
-                android:textSize="20sp" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/su_edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edt_square_transparency_style"
+                    android:drawableLeft="@drawable/ic_baseline_lock_24"
+                    android:drawablePadding="10dp"
+                    android:hint="Enter your password..."
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/su_eye_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_visibility_off_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <androidx.appcompat.widget.AppCompatButton

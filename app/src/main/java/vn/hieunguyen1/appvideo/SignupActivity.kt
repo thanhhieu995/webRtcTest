@@ -86,7 +86,7 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    fun findCharacterEmail(): Boolean {
+    private fun findCharacterEmail(): Boolean {
         val alphabet: String = "qwertyuiopasdfghjklzxcvbnm"
         for (i in edtEmail.text) {
             if (blockCharacter.contains(Char(edtEmail.text[0].toInt()))) {
@@ -103,7 +103,7 @@ class SignupActivity : AppCompatActivity() {
         return false
     }
 
-    fun checkUpperCaseEmail(): Boolean {
+    private fun checkUpperCaseEmail(): Boolean {
         val upperCase: String = "QWERTYUIOPASDFGHJKLZXCVBNM"
         for (i in edtEmail.text) {
             if (upperCase.contains(i)) {
@@ -112,6 +112,7 @@ class SignupActivity : AppCompatActivity() {
         }
         return false
     }
+
 
 
 
