@@ -1,7 +1,7 @@
 package vn.hieunguyen1.appvideo
 
+import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
 import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -41,7 +41,7 @@ class SignupActivity : AppCompatActivity() {
 
         signUp()
 //        countCharacter()
-        click()
+        clickEyePass()
     }
 
     private fun checkEmpty(): Boolean {
@@ -80,6 +80,9 @@ class SignupActivity : AppCompatActivity() {
                             "Sign up success",
                             Toast.LENGTH_LONG
                         ).show()
+                        val intent = Intent(this@SignupActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     } else {
                         Toast.makeText(
                             this@SignupActivity,
@@ -214,7 +217,7 @@ class SignupActivity : AppCompatActivity() {
 //        }
 //    }
 
-    fun click() {
+    private fun clickEyePass() {
      imgEyePass.setOnClickListener(object : OnClickListener {
          override fun onClick(p0: View?) {
              if (isPress) {

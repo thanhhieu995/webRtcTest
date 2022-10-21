@@ -29,8 +29,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_gravity="center"
-                tools:srcCompat="@drawable/video_call" />
+                android:background="@drawable/video_call"
+                android:layout_gravity="center" />
 
             <TextView
                 android:id="@+id/textView"

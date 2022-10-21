@@ -30,7 +30,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                tools:srcCompat="@drawable/video_call" />
+                android:background="@drawable/video_call" />
 
             <TextView
                 android:id="@+id/su_txtName"
