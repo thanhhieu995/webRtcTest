@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
                             }
                         })
                 } else {
-                    Toast.makeText(this@LoginActivity, "Enter your password and email", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@LoginActivity, "Enter your email and password", Toast.LENGTH_LONG).show()
                 }
             }
         })

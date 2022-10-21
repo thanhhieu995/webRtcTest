@@ -13,10 +13,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
 
 
 class SignupActivity : AppCompatActivity() {
@@ -54,15 +52,11 @@ class SignupActivity : AppCompatActivity() {
         return !(edtName.text.isNullOrEmpty() || edtEmail.text.isNullOrEmpty() || edtPassword.text.isNullOrEmpty())
     }
 
-    fun checkString(): Boolean {
-        return edtName.text.contains("[a-zA-Z]+")
-    }
-
     private val blockCharacter: String = "!@#$%^&*()_=+?/:;{}1234567890"
 
     fun countCharacterAndCreateAccount() {
         var hasMore: Boolean = false
-        var user = User(edtEmail.text.toString(), edtPassword.text.toString())
+        var user = User(edtName.text.toString() ,edtEmail.text.toString(), edtPassword.text.toString())
         for (i in edtName.text) {
             if (blockCharacter.contains(i)) {
                 Toast.makeText(
