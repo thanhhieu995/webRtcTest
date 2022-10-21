@@ -51,13 +51,30 @@ class LoginActivity : AppCompatActivity() {
                 val email = txtEmail.text.toString()
                 val password = txtPassword.text.toString()
 
-                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@LoginActivity, OnCompleteListener {
-                    if (it.isSuccessful) {
-                        Toast.makeText(this@LoginActivity, "Log in successfully", Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(this@LoginActivity, it.exception!!.localizedMessage, Toast.LENGTH_LONG).show()
-                    }
-                })
+                if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+
+                    mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this@LoginActivity, OnCompleteListener {
+                            if (it.isSuccessful) {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "Log in successfully",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    it.exception!!.localizedMessage,
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        })
+                } else {
+                    Toast.makeText(this@LoginActivity, "Enter your password and email", Toast.LENGTH_LONG).show()
+                }
             }
         })
 
