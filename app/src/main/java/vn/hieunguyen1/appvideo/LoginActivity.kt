@@ -25,6 +25,9 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var txtEmail: EditText
     lateinit var txtPassword: EditText
+
+    lateinit var txtForget: TextView
+
     lateinit var btnLogin: Button
     lateinit var btnSignup: Button
     lateinit var eyePassword: ImageView
@@ -53,22 +56,15 @@ class LoginActivity : AppCompatActivity() {
         eyePassword = findViewById(R.id.lg_eye_password)
         checkRememberPass = findViewById(R.id.lg_rememberPass)
         txtRmbPass = findViewById(R.id.lg_txtRememberPass)
+        txtForget = findViewById(R.id.lg_txtForgotPass)
 
         mAuth = FirebaseAuth.getInstance()
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         editor = sharedPreferences.edit()
 
-//        btnSignup.setOnClickListener { OnClickListener {
-//            val intent = Intent(this@LoginActivity, SignupActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        } }
-
-//        checkBox()
 
         sharePreference()
-//        checkRememberPass()
 
         btnLogin.setOnClickListener(object : OnClickListener{
             override fun onClick(p0: View?) {
@@ -124,6 +120,14 @@ class LoginActivity : AppCompatActivity() {
                 isPress = !isPress
             }
         })
+
+        txtForget.setOnClickListener(object : OnClickListener{
+            override fun onClick(p0: View?) {
+                val intent = Intent(this@LoginActivity, UpdatePasswordActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
     }
 
     companion object {
@@ -131,16 +135,6 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(context, LoginActivity::class.java)
             context.startActivity(intent)
         }
-    }
-
-    @SuppressLint("ResourceAsColor")
-    fun checkBox() {
-        if (checkRememberPass.isChecked) {
-            txtRmbPass.setTextColor(R.color.blonde)
-        } else {
-            txtRmbPass.setTextColor(R.color.black)
-        }
-        checkRememberPass.isChecked = !checkRememberPass.isChecked
     }
 
     fun checkRememberPass() {
