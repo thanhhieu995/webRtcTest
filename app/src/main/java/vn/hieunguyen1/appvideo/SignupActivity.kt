@@ -13,7 +13,10 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.auth.User
 
 
 class SignupActivity : AppCompatActivity() {
@@ -23,6 +26,8 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var edtPassword: EditText
     private lateinit var btnSigUp: Button
     lateinit var imgEyePass: ImageView
+
+    lateinit var database: FirebaseFirestore
 
     private lateinit var mAuth: FirebaseAuth
     var isPress: Boolean = true
@@ -38,6 +43,7 @@ class SignupActivity : AppCompatActivity() {
         imgEyePass = findViewById(R.id.su_eye_password)
 
         mAuth = FirebaseAuth.getInstance()
+        database = FirebaseFirestore.getInstance()
 
         signUp()
 //        countCharacter()
@@ -56,6 +62,7 @@ class SignupActivity : AppCompatActivity() {
 
     fun countCharacterAndCreateAccount() {
         var hasMore: Boolean = false
+        var user = User(edtEmail.text.toString(), edtPassword.text.toString())
         for (i in edtName.text) {
             if (blockCharacter.contains(i)) {
                 Toast.makeText(
@@ -70,11 +77,9 @@ class SignupActivity : AppCompatActivity() {
 
         if (!hasMore) {
             if (isValidEmail(edtEmail.text.toString()) && findCharacterEmail() && !checkUpperCaseEmail()) {
-                mAuth.createUserWithEmailAndPassword(
-                    edtEmail.text.toString(),
-                    edtPassword.text.toString()
-                ).addOnCompleteListener { it
+                mAuth.createUserWithEmailAndPassword(edtEmail.text.toString(), edtPassword.text.toString()).addOnCompleteListener { it
                     if (it.isSuccessful) {
+                        addUserToData(user)
                         Toast.makeText(
                             this@SignupActivity,
                             "Sign up success",
@@ -94,8 +99,6 @@ class SignupActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this@SignupActivity, "Your email is not valid, please try again", Toast.LENGTH_LONG).show()
             }
-        } else {
-//            Toast.makeText(this@SignupActivity, "nhap so roi", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -127,37 +130,8 @@ class SignupActivity : AppCompatActivity() {
     }
 
 
-
-
-    fun findNumberOnEmail() : Boolean {
-        var number: Int = 0
-        for (i in edtEmail.text) {
-
-        }
-        return false
-    }
-
-    fun isAplhabetical(input: Any): Boolean {
-        when (input) {
-            // if the input is a String, check all the Chars of it
-            is String -> return input.all { it.isLetter() }
-            // if input is a Char, just check that single Char
-            is Char -> return input.isLetter()
-            // otherwise, input doesn't contain any Char
-            else -> return false
-        }
-    }
-
     private fun isValidEmail(email: String): Boolean {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    fun checkLength(): Boolean {
-        return edtName.text.length > 2
-    }
-
-    fun checkSpecificCharacter(): Boolean {
-        return !edtName.text.contains("[!@#$%^&*()_+=<>,.?/|]")
     }
 
 
@@ -166,26 +140,6 @@ class SignupActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 if (checkEmpty()) {
                     countCharacterAndCreateAccount()
-//                    mAuth.createUserWithEmailAndPassword(
-//                        edtEmail.text.toString(),
-//                        edtPassword.text.toString()
-//                    ).addOnCompleteListener {
-//                        it
-//                        if (it.isSuccessful) {
-//
-//                            Toast.makeText(
-//                                this@SignupActivity,
-//                                "Sign up success",
-//                                Toast.LENGTH_LONG
-//                            ).show()
-//                        } else {
-//                            Toast.makeText(
-//                                this@SignupActivity,
-//                                "Sign up fail",
-//                                Toast.LENGTH_LONG
-//                            ).show()
-//                        }
-//                    }
                 } else {
                     Toast.makeText(
                         this@SignupActivity,
@@ -196,26 +150,6 @@ class SignupActivity : AppCompatActivity() {
             }
         })
     }
-
-//    public void ShowHidePass(View view){
-//
-//        if(view.getId()==R.id.show_pass_btn){
-//
-//            if(edit_password.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
-//                ((ImageView(view)).setImageResource(R.drawable.hide_password);
-//
-//                //Show Password
-//                edit_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-//            }
-//            else{
-//                ((ImageView)(view)).setImageResource(R.drawable.show_password);
-//
-//                //Hide Password
-//                edit_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-//
-//            }
-//        }
-//    }
 
     private fun clickEyePass() {
      imgEyePass.setOnClickListener(object : OnClickListener {
@@ -230,5 +164,14 @@ class SignupActivity : AppCompatActivity() {
              isPress = !isPress
             }
         })
+    }
+
+    fun addUserToData(user: vn.hieunguyen1.appvideo.User) {
+        database.collection("users").document().set(user).addOnSuccessListener {
+            Toast.makeText(this, "DocumentSnapshot successfully written!", Toast.LENGTH_LONG).show()
+        }
+            .addOnFailureListener {
+                Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
+            }
     }
 }
