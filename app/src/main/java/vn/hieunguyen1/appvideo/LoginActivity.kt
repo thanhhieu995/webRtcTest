@@ -1,17 +1,22 @@
 package vn.hieunguyen1.appvideo
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.MediaPlayer.OnCompletionListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
@@ -25,6 +30,15 @@ class LoginActivity : AppCompatActivity() {
     lateinit var eyePassword: ImageView
     lateinit var mAuth: FirebaseAuth
     var isPress: Boolean = true
+    lateinit var strEmail: String
+    lateinit var strPassword: String
+
+    lateinit var checkRememberPass: CheckBox
+    lateinit var txtRmbPass: TextView
+    var isCheckbox: Boolean = false
+
+    lateinit var sharedPreferences: SharedPreferences
+    lateinit var editor: SharedPreferences.Editor
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,8 +51,13 @@ class LoginActivity : AppCompatActivity() {
         btnSignup = findViewById(R.id.lg_btn_signup)
 
         eyePassword = findViewById(R.id.lg_eye_password)
+        checkRememberPass = findViewById(R.id.lg_rememberPass)
+        txtRmbPass = findViewById(R.id.lg_txtRememberPass)
 
         mAuth = FirebaseAuth.getInstance()
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        editor = sharedPreferences.edit()
 
 //        btnSignup.setOnClickListener { OnClickListener {
 //            val intent = Intent(this@LoginActivity, SignupActivity::class.java)
@@ -46,12 +65,18 @@ class LoginActivity : AppCompatActivity() {
 //            finish()
 //        } }
 
+//        checkBox()
+
+        sharePreference()
+//        checkRememberPass()
+
         btnLogin.setOnClickListener(object : OnClickListener{
             override fun onClick(p0: View?) {
                 val email = txtEmail.text.toString()
                 val password = txtPassword.text.toString()
 
                 if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
+                    checkRememberPass()
 
                     mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this@LoginActivity, OnCompleteListener {
@@ -108,5 +133,39 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
+    fun checkBox() {
+        if (checkRememberPass.isChecked) {
+            txtRmbPass.setTextColor(R.color.blonde)
+        } else {
+            txtRmbPass.setTextColor(R.color.black)
+        }
+        checkRememberPass.isChecked = !checkRememberPass.isChecked
+    }
 
+    fun checkRememberPass() {
+        if (checkRememberPass.isChecked) {
+            editor.putBoolean("check_remember", true)
+            strEmail = txtEmail.text.toString()
+            editor.putString("email", strEmail)
+            strPassword = txtPassword.text.toString()
+            editor.putString("password", strPassword)
+        } else {
+            editor.putBoolean("check_remember", false)
+            editor.putString("email", "")
+            editor.putString("password", "")
+        }
+        editor.commit()
+    }
+
+    fun sharePreference() {
+        isCheckbox = sharedPreferences.getBoolean("check_remember", false)
+
+        strEmail = sharedPreferences.getString("email", "").toString()
+        txtEmail.setText(strEmail)
+        strPassword = sharedPreferences.getString("password", "").toString()
+        txtPassword.setText(strPassword)
+
+        checkRememberPass.isChecked = isCheckbox
+    }
 }
