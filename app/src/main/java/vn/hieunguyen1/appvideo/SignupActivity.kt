@@ -86,7 +86,7 @@ class SignupActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(
                             this@SignupActivity,
-                            "Sign up fail " + it.exception.toString(),
+                            "Sign up fail " + it.exception!!.localizedMessage.toString(),
                             Toast.LENGTH_LONG
                         ).show()
                     }
