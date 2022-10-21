@@ -219,14 +219,10 @@ class SignupActivity : AppCompatActivity() {
          override fun onClick(p0: View?) {
              if (isPress) {
                  imgEyePass.setImageResource(R.drawable.ic_baseline_visibility_24)
-                 if (!edtPassword.text.isNullOrEmpty()) {
-                     edtPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
-                 }
+                 edtPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
              } else {
                  imgEyePass.setImageResource(R.drawable.ic_baseline_visibility_off_24)
-                 if (!edtPassword.text.isNullOrEmpty()) {
-                     edtPassword.transformationMethod = PasswordTransformationMethod.getInstance()
-                 }
+                 edtPassword.transformationMethod = PasswordTransformationMethod.getInstance()
              }
              isPress = !isPress
             }
