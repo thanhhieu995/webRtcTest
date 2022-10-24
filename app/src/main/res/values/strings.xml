@@ -7,4 +7,8 @@
     <string name="button_signup">create an account</string>
     <string name="txt_forgot">Forget password?</string>
     <string name="edt_name_hint">Enter your name…</string>
+    <string name="tv_title_dashboard">please share this code with your friend to start a video call</string>
+    <string name="tv_sc_code_hint">Secret code</string>
+    <string name="btn_join">Join</string>
+    <string name="btn_share">Share</string>
 </resources>

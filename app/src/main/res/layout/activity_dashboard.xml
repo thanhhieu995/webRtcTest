@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pink"
-    tools:context=".MainActivity">
+    tools:context=".DashboardActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/crv_signup"
@@ -30,31 +30,27 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:background="@mipmap/video_call" />
+                android:background="@mipmap/video_call_foreground" />
 
             <TextView
                 android:id="@+id/main_txtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="cursive"
-                android:text="please share this code with your friend to start a video call"
+                android:text="@string/tv_title_dashboard"
                 android:textAlignment="center"
-                android:textSize="30dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/su_edtName"
+                android:id="@+id/db_code"
+                style="@style/et_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/edt_square_transparency_style"
-                android:hint="Secret code"
+                android:hint="@string/tv_sc_code_hint"
                 android:textAlignment="center"
-                android:drawablePadding="10dp"
-                android:minHeight="48dp"
-                android:padding="10dp"
-                android:textSize="20sp" />
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/main_linearButton"
@@ -67,27 +63,21 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/main_btnJoin"
-                    android:background="@drawable/bg_button_corner_blue_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    style="@style/bt_login"
                     android:layout_weight="1"
-                    android:text="Join"
-                    android:textColor="@color/white"
-                    android:drawableLeft="@drawable/ic_baseline_all_inclusive_24"
-                    android:textStyle="bold"/>
+                    android:text="@string/btn_join"
+                    android:textColor="@color/white"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/main_btnShare"
-                    android:background="@drawable/bg_button_corner_red_style"
+                    style="@style/bt_signup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:drawableLeft="@drawable/ic_baseline_share_24"
-                    android:text="Share"
+                    android:text="@string/btn_share"
                     android:textColor="@color/white"
-                    android:layout_weight="1"
-                    android:textStyle="bold"/>
+                    android:layout_weight="1"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

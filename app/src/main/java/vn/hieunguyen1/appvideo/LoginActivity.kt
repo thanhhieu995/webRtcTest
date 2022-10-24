@@ -1,10 +1,8 @@
 package vn.hieunguyen1.appvideo
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.media.MediaPlayer.OnCompletionListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -82,7 +80,7 @@ class LoginActivity : AppCompatActivity() {
                                     "Log in successfully",
                                     Toast.LENGTH_LONG
                                 ).show()
-                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
                                 startActivity(intent)
                                 finish()
                             } else {
