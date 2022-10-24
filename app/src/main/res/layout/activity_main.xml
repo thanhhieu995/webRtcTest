@@ -4,9 +4,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A19E9E"
-    android:backgroundTint="#FFFFFF"
+    android:background="@color/pink"
     tools:context=".MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/crv_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/main_imgLogo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/video_call" />
+
+            <TextView
+                android:id="@+id/main_txtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="cursive"
+                android:text="please share this code with your friend to start a video call"
+                android:textAlignment="center"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/su_edtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/edt_square_transparency_style"
+                android:hint="Secret code"
+                android:textAlignment="center"
+                android:drawablePadding="10dp"
+                android:minHeight="48dp"
+                android:padding="10dp"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/main_linearButton"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/main_btnJoin"
+                    android:background="@drawable/button_corner_blue_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="Join"
+                    android:textColor="@color/white"
+                    android:drawableLeft="@drawable/ic_baseline_all_inclusive_24"
+                    android:textStyle="bold"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/main_btnShare"
+                    android:background="@drawable/button_corner_red_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/ic_baseline_share_24"
+                    android:text="Share"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
