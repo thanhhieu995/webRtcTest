@@ -6,4 +6,5 @@
     <string name="button_login">Log in</string>
     <string name="button_signup">create an account</string>
     <string name="txt_forgot">Forget password?</string>
+    <string name="edt_name_hint">Enter your name…</string>
 </resources>
