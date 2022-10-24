@@ -48,15 +48,10 @@
                 android:id="@+id/lg_edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edt_square_transparency_style"
-                android:drawableLeft="@drawable/ic_baseline_email_24"
-                android:drawablePadding="10dp"
-                android:fontFamily="@font/inter"
+                android:drawableStart="@drawable/ic_baseline_email_24"
+                style="@style/et_input"
                 android:hint="Enter your email..."
-                android:minHeight="48dp"
-                android:padding="10dp"
-                android:textSize="20sp" />
+                android:minHeight="48dp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_password"
@@ -68,13 +63,10 @@
                     android:id="@+id/lg_edt_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/edt_square_transparency_style"
-                    android:drawableLeft="@drawable/ic_baseline_lock_24"
-                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_baseline_lock_24"
+                    style="@style/et_input"
                     android:hint="Enter your password..."
                     android:inputType="textPassword"
-                    android:padding="10dp"
-                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -120,21 +112,17 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/lg_btn_login"
-                android:background="@drawable/button_corner_blue_style"
+                style="@style/bt_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Login"
-                android:textStyle="bold"/>
+                android:text="Login" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/lg_btn_signup"
-                android:background="@drawable/button_corner_red_style"
+                style="@style/bt_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="create an account"
-                android:textStyle="bold"/>
+                android:text="create an account" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/lg_forgotPass"

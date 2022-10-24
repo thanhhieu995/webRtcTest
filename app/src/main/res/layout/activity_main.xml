@@ -67,7 +67,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/main_btnJoin"
-                    android:background="@drawable/button_corner_blue_style"
+                    android:background="@drawable/bg_button_corner_blue_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -79,7 +79,7 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/main_btnShare"
-                    android:background="@drawable/button_corner_red_style"
+                    android:background="@drawable/bg_button_corner_red_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"

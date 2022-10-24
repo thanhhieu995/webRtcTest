@@ -106,7 +106,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/su_btnSignup"
-                android:background="@drawable/button_corner_red_style"
+                android:background="@drawable/bg_button_corner_red_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
