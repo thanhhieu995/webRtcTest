@@ -29,7 +29,7 @@
                 android:id="@+id/imageView"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/video_call"
+                android:background="@mipmap/video_call"
                 android:layout_gravity="center" />
 
             <TextView
@@ -48,13 +48,14 @@
                 android:id="@+id/lg_edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edt_square_transparency_style"
-                android:hint="Enter your email..."
                 android:layout_marginTop="10dp"
-                android:minHeight="48dp"
-                android:padding="10dp"
+                android:background="@drawable/edt_square_transparency_style"
                 android:drawableLeft="@drawable/ic_baseline_email_24"
                 android:drawablePadding="10dp"
+                android:fontFamily="@font/inter"
+                android:hint="Enter your email..."
+                android:minHeight="48dp"
+                android:padding="10dp"
                 android:textSize="20sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
